@@ -5,10 +5,10 @@ import Map from '../components/Map';
 import '../styles/components/success.css';
 
 function Success() {
-  const { state } = useContext(AppContext)
-  const { buyer } = state
-  const address = `${buyer[0].address} ${buyer[0].city} ${buyer[0].state} ${buyer[0].country}`
-  const location = useGoogleAddress(address)
+  const { state } = useContext(AppContext);
+  const { buyer } = state;
+  const address = `${buyer[0].address} ${buyer[0].city} ${buyer[0].state} ${buyer[0].country}`;
+  const location = useGoogleAddress(address);
 
   return (
     <div className="success">
@@ -16,7 +16,7 @@ function Success() {
         <h2>{`${buyer[0].name} Gracias por tu compra`}</h2>
         <span>Tu pedido llegara en 3 dias a tu direccion</span>
         <div className="success-map">
-          <Map data={location}/>
+          <Map data={location} />
         </div>
       </div>
     </div>

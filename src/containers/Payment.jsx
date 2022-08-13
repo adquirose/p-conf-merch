@@ -6,54 +6,54 @@ import handleSumaTotal from '../utils';
 import '../styles/components/payment.css';
 
 function PayPalCheckout({ cart, addNewOrder, buyer }) {
-
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const handleApprove = (order) => {  
-    
-    if(order.status === 'COMPLETED'){
+  const handleApprove = (order) => {
+    if (order.status === 'COMPLETED') {
       const newOrder = {
         buyer,
         products: cart,
-        payment: order
-      }
-      addNewOrder(newOrder)
-      navigate('/checkout/success')
+        payment: order,
+      };
+      addNewOrder(newOrder);
+      navigate('/checkout/success');
     }
-  }
+  };
   return (
     <PayPalButtons
       style={{ layout: 'vertical' }}
       disabled={false}
-      createOrder={(data, actions) => actions.order.create({
+      createOrder={(data, actions) =>
+        actions.order.create({
           purchase_units: [
             {
               amount: {
-                value: handleSumaTotal(cart)
-              }
-            }
-          ]
-        })}
-      onApprove={ async (data, actions) => {
+                value: handleSumaTotal(cart),
+              },
+            },
+          ],
+        })
+      }
+      onApprove={async (data, actions) => {
         const order = await actions.order.capture();
         handleApprove(order);
       }}
       onError={(err) => {
         setError(err);
-        console.error("PayPal Checkout onError", error);
+        console.error('PayPal Checkout onError', error);
       }}
       onClick={(data, actions) => {
         // Validate on button click, client or server side
         const hasAlreadyBoughtCourse = false;
-      
+
         if (hasAlreadyBoughtCourse) {
           setError(
-            "You already bought this course. Go to your account to view your list of courses."
+            'You already bought this course. Go to your account to view your list of courses.'
           );
-      
+
           return actions.reject();
-        } return actions.resolve();
-        
+        }
+        return actions.resolve();
       }}
     />
   );
