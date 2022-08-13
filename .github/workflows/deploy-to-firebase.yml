@@ -6,7 +6,11 @@ jobs:
   build:
     name: Build
     env:
+<<<<<<< HEAD
       REACT_APP_PAYPAL_CLIENT_ID: ${{ secrets.REACT_APP_PAYPAL_CLIENT_ID }}
+=======
+      REACT_APP_PAYPAL_CLIENT_ID: ${{ secrets.REACT_APP_PAYPAL_ID }}
+>>>>>>> abaaccfe4e07ea55c8ce7201958724497ac20396
       GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
       GOOGLE_MAPS_GEOCODING_API_KEY: $ {{ secrets.GOOGLE_MAPS_GEOCODING_API_KEY }}
     runs-on: ubuntu-latest
