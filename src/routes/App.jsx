@@ -11,10 +11,9 @@ import Layout from '../components/Layout';
 import AppContext from '../context/AppContext';
 import useInitialState from '../hooks/useInitialState';
 import '../styles/components/app.css';
-import config from '../../config';
 
 const initialOptions = {
-  'client-id': config.reactAppPayPalClientId,
+  'client-id': process.env.REACT_APP_PAYPAL_CLIENT_ID,
   currency: 'USD',
   intent: 'capture',
 };
