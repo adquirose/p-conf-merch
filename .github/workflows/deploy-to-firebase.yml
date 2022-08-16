@@ -8,6 +8,12 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@main
+      - name: create env file
+        run: |
+          touch .env
+          echo REACT_APP_PAYPAL_CLIENT_ID=${{ secrets.REACT_APP_PAYPAL_CLIENT_ID }} >> .env
+          echo GOOGLE_MAPS_API_KEY=${{ secrets.GOOGLE_MAPS_API_KEY }}  >> .env
+          echo GOOGLE_MAPS_GEOCODING_API_KEY=${ secrets.GOOGLE_MAPS_GEOCODING_API_KEY }  >> .env
       - name: Install Dependencies
         run: npm install
       - name: Build
