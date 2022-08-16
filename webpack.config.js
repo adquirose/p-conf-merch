@@ -50,12 +50,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'assets/[name].css',
     }),
-    new Dotenv({
-      path: path.resolve(__dirname,'./.env'),
-      safe: true,
-      systemvars: true,
-      defaults: false,
-    })
+    new Dotenv()
+    
   ],
   devServer: {
     static: {
