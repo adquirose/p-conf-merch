@@ -1,5 +1,5 @@
 name: Build and Deploy
-on:[push]
+  on:[push]
     
 jobs:
   build:
@@ -17,10 +17,10 @@ jobs:
         with:
           name: dist
           path: dist
-      env:
-        REACT_APP_PAYPAL_CLIENT_ID: ${{ secrets.REACT_APP_PAYPAL_CLIENT_ID }}
-        GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
-        GOOGLE_MAPS_GEOCODING_API_KEY: $ {{ secrets.GOOGLE_MAPS_GEOCODING_API_KEY }}
+    env:
+      REACT_APP_PAYPAL_CLIENT_ID: ${{ secrets.REACT_APP_PAYPAL_CLIENT_ID }}
+      GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+      GOOGLE_MAPS_GEOCODING_API_KEY: $ {{ secrets.GOOGLE_MAPS_GEOCODING_API_KEY }}
 
   deploy:
     name: Deploy
