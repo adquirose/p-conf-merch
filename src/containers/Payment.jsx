@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { PayPalButtons } from '@paypal/react-paypal-js';
 import AppContext from '../context/AppContext';
@@ -64,24 +65,42 @@ function Payment() {
     addNewOrder,
   } = useContext(AppContext);
   return (
-    <div className="payment">
-      <div className="payment-content">
-        <h3>Resumen del pedido:</h3>
-        {cart.map((product) => (
-          <div key={product.title} className="payment-item">
-            <div className="payment-element">
-              <h4>{product.title}</h4>
-              <span>{product.price}</span>
+    <>
+      <Helmet>
+        <title>Platzi Conf - Informacion</title>
+        <meta name="description" content="Proceso de compra" />
+        <meta
+          name="keywords"
+          content="E-commerce,HTML, CSS, JavaScript, React"
+        />
+        <meta name="author" content="adquirose" />
+      </Helmet>
+
+      <div className="payment">
+        <div className="payment-content">
+          <h3>Resumen del pedido:</h3>
+          {cart.map((product) => (
+            <div key={product.title} className="payment-item">
+              <div className="payment-element">
+                <h4>{product.title}</h4>
+                <span>{product.price}</span>
+              </div>
             </div>
+          ))}
+          {cart.length > 0 ? (
+            <h3>{`Total: ${handleSumaTotal(cart)}`}</h3>
+          ) : null}
+          <div className="payment-button">
+            <PayPalCheckout
+              cart={cart}
+              buyer={buyer}
+              addNewOrder={addNewOrder}
+            />
           </div>
-        ))}
-        {cart.length > 0 ? <h3>{`Total: ${handleSumaTotal(cart)}`}</h3> : null}
-        <div className="payment-button">
-          <PayPalCheckout cart={cart} buyer={buyer} addNewOrder={addNewOrder} />
         </div>
+        <div />
       </div>
-      <div />
-    </div>
+    </>
   );
 }
 
