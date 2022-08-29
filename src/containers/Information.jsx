@@ -76,7 +76,7 @@ function Information() {
         <div className="information-sidebar">
           <h3>Pedido: $ {handleSumaTotal(cart)}</h3>
           {cart.map((product) => (
-            <div key={product.id} className="information-item">
+            <div key={product.uid} className="information-item">
               <div className="information-element">
                 <h4>{product.title}</h4>
                 <span>$ {product.price}</span>

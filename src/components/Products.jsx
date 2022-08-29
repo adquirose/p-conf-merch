@@ -4,8 +4,8 @@ import AppContext from '../context/AppContext';
 import '../styles/components/products.css';
 
 function Products() {
-  const { state, addToCart } = useContext(AppContext);
-  const { products } = state;
+  const { products, addToCart } = useContext(AppContext);
+
   const handleAddToCart = (product) => () => {
     addToCart(product);
   };
@@ -14,8 +14,8 @@ function Products() {
       <div className="products-items">
         {products.map((product) => (
           <Product
-            key={product.id}
-            product={product}
+            key={product.attributes.uid}
+            product={product.attributes}
             handleAddToCart={handleAddToCart}
           />
         ))}

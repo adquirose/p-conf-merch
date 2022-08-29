@@ -1,10 +1,12 @@
 {
     "extends": [
       "airbnb",
-      "prettier"
+      "prettier",
+      "plugin:styled-components-a11y/recommended"
     ],
     "plugins": [
-      "prettier"
+      "prettier",
+      "styled-components-a11y"
     ],
     "rules": {
       "react/jsx-filename-extension": [

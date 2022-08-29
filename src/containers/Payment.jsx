@@ -80,7 +80,7 @@ function Payment() {
         <div className="payment-content">
           <h3>Resumen del pedido:</h3>
           {cart.map((product) => (
-            <div key={product.title} className="payment-item">
+            <div key={product.uid} className="payment-item">
               <div className="payment-element">
                 <h4>{product.title}</h4>
                 <span>{product.price}</span>

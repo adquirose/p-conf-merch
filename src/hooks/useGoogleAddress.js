@@ -7,7 +7,6 @@ const useGoogleAddress = (address) => {
   useEffect(() => {
     async function handler() {
       const response = await Axios(API);
-      console.log(response.data);
       setMap(response.data.results[0].geometry.location);
     }
     handler();

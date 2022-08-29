@@ -4,7 +4,10 @@ import '../styles/components/products.css';
 function Product({ product, handleAddToCart }) {
   return (
     <div className="products-item">
-      <img src={product.image} alt={product.title} />
+      <img
+        src={`http://localhost:1337${product.image.data.attributes.url}`}
+        alt={product.title}
+      />
       <div className="products-item-info">
         <h2>
           {product.title}

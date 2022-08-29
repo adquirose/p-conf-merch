@@ -23,7 +23,7 @@ function Checkout() {
         <div className="checkout-content">
           <h3>Lista de pedidos</h3>
           {cart.map((product) => (
-            <div key={product.id} className="checkout-item">
+            <div key={product.uid} className="checkout-item">
               <div className="checkout-element">
                 <h4>{product.title}</h4>
                 <span>{product.price}</span>
