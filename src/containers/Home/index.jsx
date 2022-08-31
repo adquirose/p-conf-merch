@@ -1,10 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import Products from '../components/Products';
+import Layout from '../../components/Layout';
+import Products from '../../components/Products';
 
 function Home() {
   return (
-    <>
+    <Layout>
       <Helmet>
         <title>Platzi Conf - Productos</title>
         <meta name="description" content="Home" />
@@ -15,7 +16,7 @@ function Home() {
         <meta name="author" content="adquirose" />
       </Helmet>
       <Products />
-    </>
+    </Layout>
   );
 }
 

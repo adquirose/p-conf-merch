@@ -1,15 +1,16 @@
 import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import AppContext from '../context/AppContext';
-import handleSumaTotal from '../utils';
-import '../styles/components/checkout.css';
+import AppContext from '../../context/AppContext';
+import handleSumaTotal from '../../utils';
+import Layout from '../../components/Layout';
+import '../../styles/components/checkout.css';
 
 function Checkout() {
   const { state, removeFromCart } = useContext(AppContext);
   const { cart } = state;
   return (
-    <>
+    <Layout>
       <Helmet>
         <title>Platzi Conf - Lista</title>
         <meta name="description" content="Checkout" />
@@ -41,7 +42,7 @@ function Checkout() {
           </Link>
         </div>
       </div>
-    </>
+    </Layout>
   );
 }
 

@@ -5,7 +5,7 @@ import AuthContext from '../context/AuthContext';
 import useAuth from '../hooks/useAuth';
 
 function PrivateRoute({ children, redirectTo }) {
-  const { auth } = useAuth(AuthContext);
-  return auth ? children : <Navigate to={redirectTo} />;
+  const { jwt } = useAuth(AuthContext);
+  return jwt ? children : <Navigate to={redirectTo} />;
 }
 export default PrivateRoute;

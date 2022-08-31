@@ -5,18 +5,21 @@ import PrivateRoute from '../components/PrivateRoute';
 import Home from '../containers/Home';
 import Cart from '../containers/Cart';
 import Login from '../containers/Login';
+import LoginRedirect from '../containers/LoginRedirect';
 import SignUp from '../containers/SignUp';
 import Checkout from '../containers/Checkout';
+import Perfil from '../containers/Perfil';
 import Information from '../containers/Information';
 import Success from '../containers/Success';
 import Payment from '../containers/Payment';
 import NotFound from '../containers/NotFound';
-import Layout from '../components/Layout/Layout';
 import AppContext from '../context/AppContext';
 import AuthContext from '../context/AuthContext';
 import useInitialState from '../hooks/useInitialState';
 import useAuth from '../hooks/useAuth';
 import GlobalStyle from './styles';
+import ForgotPassword from '../containers/ForgotPassword';
+import ResetPassword from '../containers/ResetPassword';
 
 const initialOptions = {
   'client-id': process.env.REACT_APP_PAYPAL_CLIENT_ID,
@@ -27,7 +30,7 @@ function App() {
   const initialState = useInitialState();
   const auth = useAuth();
   const isEmpty = Object.keys(initialState.state).length;
-
+  
   return (
     <div>
       <GlobalStyle />
@@ -36,17 +39,31 @@ function App() {
           <AppContext.Provider value={initialState}>
             <BrowserRouter>
               <AuthContext.Provider value={auth}>
-                <Layout>
                   <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/login" element={<Login /> } />
                     <Route path="/cart" element={<Cart />} />
-                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/signup" element={<SignUp />} />   
+                    <Route path="/forgot-password" element={<ForgotPassword />} /> 
+                    <Route path="/reset-password" element={<ResetPassword />} />   
+                    <Route
+                      exact
+                      path="/connect/:providerName/redirect"
+                      element={<LoginRedirect />}
+                    />
                     <Route
                       path="/checkout"
                       element={
                         <PrivateRoute redirectTo="/login">
                           <Checkout />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/perfil"
+                      element={
+                        <PrivateRoute redirectTo="/login">
+                          <Perfil />
                         </PrivateRoute>
                       }
                     />
@@ -58,7 +75,6 @@ function App() {
                     <Route path="/checkout/success" element={<Success />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
-                </Layout>
               </AuthContext.Provider>
             </BrowserRouter>
           </AppContext.Provider>

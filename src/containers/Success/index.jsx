@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet';
-import AppContext from '../context/AppContext';
-import useGoogleAddress from '../hooks/useGoogleAddress';
-import Map from '../components/Map';
-import '../styles/components/success.css';
+import AppContext from '../../context/AppContext';
+import useGoogleAddress from '../../hooks/useGoogleAddress';
+import Map from '../../components/Map';
+import '../../styles/components/success.css';
 
 function Success() {
   const { state } = useContext(AppContext);

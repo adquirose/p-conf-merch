@@ -1,5 +1,5 @@
 import React, { useRef, useContext } from 'react';
-import AuthContext from '../context/AuthContext';
+import AuthContext from '../../context/AuthContext';
 
 function SignUp() {
   const form = useRef(null);
@@ -9,8 +9,9 @@ function SignUp() {
     signUp(formData);
   };
   return (
-    <>
-      <form ref={form}>
+    <div style={{width:'450px'}}>
+      <h2>Formulario de Registro</h2>
+      <form style={{width:'420px'}} ref={form}>
         <input name="username" type="text" placeholder="Username" />
         <input name="email" type="email" placeholder="Email" />
         <input name="password" type="password" placeholder="Password" />
@@ -19,7 +20,7 @@ function SignUp() {
       <button type="button" onClick={handleOnClick}>
         Registrarte
       </button>
-    </>
+    </div>
   );
 }
 

@@ -1,9 +1,10 @@
 import React, { useRef, useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, useNavigate } from 'react-router-dom';
-import AppContext from '../context/AppContext';
-import '../styles/components/information.css';
-import handleSumaTotal from '../utils';
+import AppContext from '../../context/AppContext';
+import Layout from '../../components/Layout';
+import '../../styles/components/information.css';
+import handleSumaTotal from '../../utils';
 
 function Information() {
   const form = useRef(null);
@@ -29,7 +30,7 @@ function Information() {
   };
 
   return (
-    <>
+    <Layout>
       <Helmet>
         <title>Platzi Conf - Informacion</title>
         <meta name="description" content="Informacion de compra" />
@@ -85,7 +86,7 @@ function Information() {
           ))}
         </div>
       </div>
-    </>
+    </Layout>
   );
 }
 

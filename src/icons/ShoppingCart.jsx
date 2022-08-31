@@ -1,12 +1,6 @@
 import React from 'react';
 
-function ShoppingCart(props) {
-  const fill = props.fill || 'black';
-  const secondaryfill = props.secondaryfill || fill;
-  const strokewidth = props.strokewidth || 3;
-  const width = props.width || '100%';
-  const height = props.height || '100%';
-
+function ShoppingCart({fill = 'black', secondaryfill='black', strokewidth=3, width='100%', height='100%'}) {
   return (
     <svg
       height={height}

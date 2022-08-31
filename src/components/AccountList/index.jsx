@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext'
 
 function ButtonMyAccount({ handleOnClick }) {
@@ -10,7 +10,6 @@ function ButtonMyAccount({ handleOnClick }) {
     )
 }
     
-
 function MyAccount() {
     const { signOut } = useContext(AuthContext)
     const [visibleButton, setVisibleButton] = useState(true)
@@ -26,9 +25,9 @@ function MyAccount() {
         }
             return(
             <ul>
-                <li>
+                <Link to='/perfil'>
                     Perfil
-                </li>
+                </Link>
                 <li>
                     <button type="button" onClick={handleLogout}>Salir</button>
                 </li>

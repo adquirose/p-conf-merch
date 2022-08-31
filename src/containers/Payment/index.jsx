@@ -2,9 +2,9 @@ import React, { useState, useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { PayPalButtons } from '@paypal/react-paypal-js';
-import AppContext from '../context/AppContext';
-import handleSumaTotal from '../utils';
-import '../styles/components/payment.css';
+import AppContext from '../../context/AppContext';
+import handleSumaTotal from '../../utils';
+import '../../styles/components/payment.css';
 
 function PayPalCheckout({ cart, addNewOrder, buyer }) {
   const [error, setError] = useState(null);

@@ -4,18 +4,14 @@ import AppContext from '../../context/AppContext';
 import AuthContext from '../../context/AuthContext';
 import { HeaderContainer, HeaderCheckout } from './styles';
 import ShoppingCart from '../../icons/ShoppingCart';
-import MyAccount from '../MyAccount';
+import MyAccount from '../AccountList';
 
 function Header() {
   const { state } = useContext(AppContext);
-  const { auth } = useContext(AuthContext);
+  const { jwt } = useContext(AuthContext);
   const { cart } = state;
   const location = useLocation()
-  
-  // const handleLogin = () => {
-  //   navigate('/login');
-  // };
-  
+   
   return (
     <HeaderContainer>
       <h1 className="header-title">
@@ -29,7 +25,7 @@ function Header() {
                 <ShoppingCart width="32" height="32"/>
               </Link>
               {cart.length > 0 && <div className="header-alert">{cart.length}</div>}
-              {auth ? (
+              {jwt ? (
                 <MyAccount/>
               )
                 : <Link to='/login'>Ingresa aca</Link>
