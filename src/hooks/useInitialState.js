@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import initialState from '../initialState';
+import { BACKEND_URL } from '../constants';
 
-const API = 'http://localhost:1337/api/products?populate=%2A';
+const API = `${BACKEND_URL}/api/products?populate=%2A`;
 
 const useInitialState = () => {
   const [state, setState] = useState(initialState);
