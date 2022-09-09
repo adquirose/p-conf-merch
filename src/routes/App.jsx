@@ -30,7 +30,7 @@ function App() {
   const initialState = useInitialState();
   const auth = useAuth();
   const isEmpty = Object.keys(initialState.state).length;
-  
+
   return (
     <div>
       <GlobalStyle />
@@ -39,42 +39,42 @@ function App() {
           <AppContext.Provider value={initialState}>
             <BrowserRouter>
               <AuthContext.Provider value={auth}>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login /> } />
-                    <Route path="/cart" element={<Cart />} />
-                    <Route path="/signup" element={<SignUp />} />   
-                    <Route path="/forgot-password" element={<ForgotPassword />} /> 
-                    <Route path="/reset-password" element={<ResetPassword />} />   
-                    <Route
-                      exact
-                      path="/connect/:providerName/redirect"
-                      element={<LoginRedirect />}
-                    />
-                    <Route
-                      path="/checkout"
-                      element={
-                        <PrivateRoute redirectTo="/login">
-                          <Checkout />
-                        </PrivateRoute>
-                      }
-                    />
-                    <Route
-                      path="/perfil"
-                      element={
-                        <PrivateRoute redirectTo="/login">
-                          <Perfil />
-                        </PrivateRoute>
-                      }
-                    />
-                    <Route
-                      path="/checkout/information"
-                      element={<Information />}
-                    />
-                    <Route path="/checkout/payment" element={<Payment />} />
-                    <Route path="/checkout/success" element={<Success />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="/signup" element={<SignUp />} />
+                  <Route path="/forgot-password" element={<ForgotPassword />} />
+                  <Route path="/reset-password" element={<ResetPassword />} />
+                  <Route
+                    exact
+                    path="/connect/:providerName/redirect"
+                    element={<LoginRedirect />}
+                  />
+                  <Route
+                    path="/checkout"
+                    element={
+                      <PrivateRoute redirectTo="/login">
+                        <Checkout />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/perfil"
+                    element={
+                      <PrivateRoute redirectTo="/login">
+                        <Perfil />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/checkout/information"
+                    element={<Information />}
+                  />
+                  <Route path="/checkout/payment" element={<Payment />} />
+                  <Route path="/checkout/success" element={<Success />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
               </AuthContext.Provider>
             </BrowserRouter>
           </AppContext.Provider>

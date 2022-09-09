@@ -1,8 +1,7 @@
 import React, { useRef, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import AuthContext from '../../context/AuthContext';
-
-// const backendUrl = 'http://localhost:1337';
 
 // const providersNames = [
 //   'discord',
@@ -29,7 +28,7 @@ import AuthContext from '../../context/AuthContext';
 // }
 
 function Login() {
-  const { error, signIn } = useContext(AuthContext);
+  const { error, loading, signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const form = useRef(null);
   const handleSubmit = () => {
@@ -38,15 +37,36 @@ function Login() {
   };
 
   return (
-    <div style={{width:'450px'}}>
-      <h2>Inicio de sesión</h2>
-      <form style={{width:'420px'}} ref={form}>
-        <input name="user" type="text" placeholder="Email"/>
-        <input name="password" type="password" placeholder="Password"/>
-      </form>
-      <button type='button' onClick={handleSubmit}>Iniciar</button>
-      <Link to="/forgot-password">Olvidaste tu contraseña?</Link>
-      <Link to="/signup">Registrate</Link>
+
+    <Container>
+      <Row  style={{height:'100vh'}} className="d-flex justify-content-center align-items-center">
+        <Col md="8">
+          <h2>Inicio de sesión</h2>
+          <Form ref={form}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control name="user" type="email" placeholder="Email" />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control name="password" type="password" placeholder="Password" />
+            </Form.Group>
+            <Button type="button" onClick={handleSubmit}>Iniciar</Button>
+            {loading  &&
+              <Form.Text className="text-muted">
+                Cargando...
+              </Form.Text>
+            }
+            { error && 
+                <Form.Text className="text-muted">
+                  Error en los datos ingresados
+                </Form.Text>
+            }
+          </Form>
+          <Link to="/forgot-password">¿Olvidaste tu contraseña?</Link>
+          <Link to="/signup">Registrate</Link>
+        </Col>
+      </Row>
     
       {/* <ul style={{ listStyleType: 'none' }}>
         {providersNames.map((providerName) => (
@@ -54,9 +74,8 @@ function Login() {
             <LoginButton providerName={providerName} />
           </li>
         ))}
-      </ul> */}
-      {error && <span style={{color:'black'}}>Error en los datos ingresados</span>}
-    </div>
+      </ul> */}  
+    </Container>
   );
 }
 export default Login;

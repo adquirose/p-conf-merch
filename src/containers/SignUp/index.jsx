@@ -3,7 +3,7 @@ import AuthContext from '../../context/AuthContext';
 
 function SignUp() {
   const form = useRef(null);
-  const { signUp } = useContext(AuthContext);
+  const { signUp, error, message } = useContext(AuthContext);
   const handleOnClick = () => {
     const formData = new FormData(form.current);
     signUp(formData);
@@ -20,6 +20,8 @@ function SignUp() {
       <button type="button" onClick={handleOnClick}>
         Registrarte
       </button>
+      { message && <p>{message}</p>}
+      { error  && <p>{error}</p>}
     </div>
   );
 }

@@ -3,12 +3,14 @@ import axios from 'axios';
 import { BACKEND_URL } from '../constants';
 
 function useProviderAuth() {
- 
   const [jwt, setJwt] = useState(!!localStorage.getItem('jwt'));
   const [user, setUser] = useState(!!localStorage.getItem('user'));
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false)
 
   const signIn = (formData, callback) => {
+    setLoading(true)
     axios
       .post(`${BACKEND_URL}/api/auth/local`, {
         identifier: formData.get('user'),
@@ -16,20 +18,21 @@ function useProviderAuth() {
       })
       .then((response) => {
         // Handle success.
-        console.log('Well done!');
-        console.log('User profile', response.data.user);
-        console.log('User token', response.data.jwt);
+        // console.log('Well done!');
+        // console.log('User profile', response.data.user);
+        // console.log('User token', response.data.jwt);
+        setLoading(false)
         setUser(response.data.user);
         setJwt(response.data.jwt);
         localStorage.setItem('jwt', response.data.jwt);
         localStorage.setItem('user', response.data.user);
-        callback('/')
-        setError(false)
+
+        callback('/');
+        setError(false);
       })
       .catch((err) => {
-        // Handle error.
-        console.log('An error occurred:', err.response);
-        setError(true);
+        setLoading(false)
+        setError(err.response);
       });
   };
   const signOut = () => {
@@ -39,9 +42,14 @@ function useProviderAuth() {
     setJwt(null);
   };
   const signUp = (formData) => {
-    axios.get(`${BACKEND_URL}/api/users?filters[$and][0][email][$eq]=${formData.get('email')}`)
+    axios
+      .get(
+        `${BACKEND_URL}/api/users?filters[$and][0][email][$eq]=${formData.get(
+          'email'
+        )}`
+      )
       .then((response) => {
-        if(!response.data.length){
+        if (!response.data.length) {
           axios
             .post(`${BACKEND_URL}/api/auth/local/register`, {
               username: formData.get('username'),
@@ -49,52 +57,69 @@ function useProviderAuth() {
               email: formData.get('email'),
             })
             .then((res) => {
-              // Handle success.
-              console.log('Well done!');
-              console.log('User profile', res.data.user);
-              console.log('User token', res.data.jwt);
-
+              setMessage('revisa tu correo electronico de confirmacion');
+              setError(!res.data.ok);
             })
             .catch((err) => {
-              // Handle error.
-              console.log('An error occurred:', err.response);
-              return err.response
+              setMessage('');
+              setError(err.response);
             });
-        }
-        else{
-          console.log('el usuario ya existe!')
+        } else {
+          setMessage('el usuario ya existe');
+          setError(null);
         }
       })
-      .catch(err => console.log(err))
-    };
-  const forgotPassword = (email) => {
-    axios.get(`${BACKEND_URL}/api/users?filters[$and][0][email][$eq]=${email}`)
+      .catch((err) => {
+        setError(err);
+        setMessage('ha ocurrido un error');
+      });
+  };
+  const forgotPassword = (formData) => {
+    axios
+      .get(
+        `${BACKEND_URL}/api/users?filters[$and][0][email][$eq]=${formData.get(
+          'email'
+        )}`
+      )
       .then((response) => {
-        if(response.data.length){
-          axios.post(`${BACKEND_URL}/api/auth/forgot-password`, { email })
-            .then((res) => {
-              console.log(`Your user received an email ${res}`);
+        if (response.data.length) {
+          axios
+            .post(`${BACKEND_URL}/api/auth/forgot-password`, {
+              email: formData.get('email'),
             })
-            .catch(err => {
-              console.log(`An error occurred:', ${err.response}`);
+            .then((res) => {
+              setMessage(
+                'revisa tu correo electronico para recuperar tu constraseña'
+              );
+              setError(!res.data.ok);
+            })
+            .catch((err) => {
+              setMessage('');
+              setError(err.response);
             });
-        }else{
-          console.log('no se encontro el mail en los registros')
+        } else {
+          setError(null);
+          setMessage('usuario no registrado!');
         }
       })
-      .catch(err => console.log(err))
-    }
+      .catch((err) => {
+        setError(err);
+        setMessage('ha ocurrido un error');
+      });
+  };
   return {
     user,
     jwt,
     error,
+    message,
+    loading,
     setError,
     setUser,
     setJwt,
     signIn,
     signOut,
     signUp,
-    forgotPassword
+    forgotPassword,
   };
 }
 export default useProviderAuth;

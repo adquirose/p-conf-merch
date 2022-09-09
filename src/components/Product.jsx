@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/components/products.css';
-import { BACKEND_URL } from '../constants'
+import { BACKEND_URL } from '../constants';
 
 function Product({ product, handleAddToCart }) {
   return (
