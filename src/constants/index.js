@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 export const BACKEND_URL = 'https://strapi-rocp.onrender.com';
 export const FacebookBackground =
   'linear-gradient(to right, #0546A0 0%, #0546A0 40%, #663FB6 100%)';
@@ -6,9 +5,3 @@ export const InstagramBackground =
   'linear-gradient(to right, #A12AC4 0%, #ED586C 40%, #F0A853 100%)';
 export const TwitterBackground =
   'linear-gradient(to right, #56C1E1 0%, #35A9CE 50%)';
-=======
-export const BACKEND_URL = 'https://strapi-rocp.onrender.com'
-export const FacebookBackground = "linear-gradient(to right, #0546A0 0%, #0546A0 40%, #663FB6 100%)";
-export const InstagramBackground = "linear-gradient(to right, #A12AC4 0%, #ED586C 40%, #F0A853 100%)";
-export const TwitterBackground = "linear-gradient(to right, #56C1E1 0%, #35A9CE 50%)";
->>>>>>> f1604fb77a632555ec3b35fc974c8a5e5e25ab5f
