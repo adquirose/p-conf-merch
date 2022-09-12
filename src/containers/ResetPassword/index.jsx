@@ -7,7 +7,6 @@ function ResetPassword() {
   const location = useLocation()
   const params = new URLSearchParams(location.search);
   const form = useRef(null)
-  
   const handleOnclick = () => {
     const formData = new FormData(form.current)
     axios
