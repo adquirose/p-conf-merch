@@ -1,11 +1,10 @@
 import React from 'react';
 
-function Facebook(props) {
-  const fill = props.fill || 'currentColor';
-  const secondaryfill = props.secondaryfill || fill;
-  const strokewidth = props.strokewidth || 1;
-  const width = props.width || '100%';
-  const height = props.height || '100%';
+function Facebook() {
+  const fill = 'currentColor';
+  const secondaryfill = fill;
+  const width = '100%';
+  const height = '100%';
 
   return (
     <svg

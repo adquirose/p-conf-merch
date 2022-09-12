@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Google(props) {
+function Google() {
   return (
     <svg
       height="48"

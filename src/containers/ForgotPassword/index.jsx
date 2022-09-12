@@ -9,7 +9,7 @@ function ForgotPassword() {
     const handleOnClick = () => {
       const formData = new FormData(form.current)
       forgotPassword(formData)
-      }
+    }
     return (
       <Container>
         <Row style={{height:'100vh'}} className="d-flex justify-content-center align-items-center">
@@ -20,22 +20,22 @@ function ForgotPassword() {
                 <Form.Label>Email address</Form.Label>
                 <Form.Control name="email" type="email" placeholder="Ingresa tu email" />
               </Form.Group>
-              {loading  &&
-              <Form.Text className="text-muted">
-                Cargando...
-              </Form.Text>
-            }
-            { error && 
-                <Form.Text className="text-muted">
-                  Error en los datos ingresados
-                </Form.Text>
-            }
-            { message && 
-                <Form.Text className="text-muted">
-                  {message}
-                </Form.Text>
-            }
-            <Button type="button" onClick={handleOnClick}>Enviar</Button>
+              <Button type="button" onClick={handleOnClick}>Enviar</Button>
+                {loading  &&
+                  <Form.Text className="text-muted">
+                    Cargando...
+                  </Form.Text>
+                }
+                {error && 
+                  <Form.Text className="text-muted">
+                    Error en los datos ingresados
+                  </Form.Text>
+                }
+                {message && 
+                  <Form.Text className="text-muted">
+                    {message}
+                  </Form.Text>
+                }
             </Form>
           </Col>
         </Row>

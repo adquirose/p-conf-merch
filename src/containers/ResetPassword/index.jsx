@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { useLocation }  from 'react-router-dom'
 import axios from 'axios'
-import  { BACKEND_URL } from '../../constants'
+import { BACKEND_URL } from '../../constants'
 
 function ResetPassword() {
   const location = useLocation()

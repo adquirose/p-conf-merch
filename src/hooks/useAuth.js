@@ -7,10 +7,10 @@ function useProviderAuth() {
   const [user, setUser] = useState(!!localStorage.getItem('user'));
   const [error, setError] = useState(null);
   const [message, setMessage] = useState('');
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const signIn = (formData, callback) => {
-    setLoading(true)
+    setLoading(true);
     axios
       .post(`${BACKEND_URL}/api/auth/local`, {
         identifier: formData.get('user'),
@@ -21,7 +21,7 @@ function useProviderAuth() {
         // console.log('Well done!');
         // console.log('User profile', response.data.user);
         // console.log('User token', response.data.jwt);
-        setLoading(false)
+        setLoading(false);
         setUser(response.data.user);
         setJwt(response.data.jwt);
         localStorage.setItem('jwt', response.data.jwt);
@@ -31,7 +31,7 @@ function useProviderAuth() {
         setError(false);
       })
       .catch((err) => {
-        setLoading(false)
+        setLoading(false);
         setError(err.response);
       });
   };
@@ -75,19 +75,17 @@ function useProviderAuth() {
       });
   };
   const forgotPassword = (formData) => {
+    setLoading(true);
     axios
-      .get(
-        `${BACKEND_URL}/api/users?filters[$and][0][email][$eq]=${formData.get(
-          'email'
-        )}`
-      )
+      .get(`${BACKEND_URL}/api/users?filters[$and][0][email][$eq]=${formData.get('email')}`)
       .then((response) => {
-        if (response.data.length) {
+        if(response.data.length) {
           axios
             .post(`${BACKEND_URL}/api/auth/forgot-password`, {
               email: formData.get('email'),
             })
             .then((res) => {
+              setLoading(false)
               setMessage(
                 'revisa tu correo electronico para recuperar tu constraseña'
               );
@@ -95,6 +93,7 @@ function useProviderAuth() {
             })
             .catch((err) => {
               setMessage('');
+              setLoading(false)
               setError(err.response);
             });
         } else {
