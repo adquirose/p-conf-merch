@@ -45,7 +45,7 @@ function App() {
                   <Route path="/cart" element={<Cart />} />
                   <Route path="/signup" element={<SignUp />} />
                   <Route path="/forgot-password" element={<ForgotPassword />} />
-                  <Route path="/reset-password" element={<ResetPassword />} />
+                  <Route strict path="/reset-password/" element={<ResetPassword />} />
                   <Route
                     exact
                     path="/connect/:providerName/redirect"
