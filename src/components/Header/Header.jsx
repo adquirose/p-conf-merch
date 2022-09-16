@@ -5,6 +5,7 @@ import AuthContext from '../../context/AuthContext';
 import { HeaderContainer, HeaderCheckout } from './styles';
 import ShoppingCart from '../../icons/ShoppingCart';
 import MyAccount from '../AccountList';
+import NavbarApp from '../Navbar';
 
 function Header() {
   const { state } = useContext(AppContext);
@@ -13,28 +14,29 @@ function Header() {
   const location = useLocation()
    
   return (
-    <HeaderContainer>
-      <h1 className="header-title">
-        <Link to="/">PlatziConf Merch</Link>
-      </h1>
-      <HeaderCheckout>
-        {
-          location.pathname !== '/login' &&(
-            <>
-              <Link to="/cart">
-                <ShoppingCart width="32" height="32"/>
-              </Link>
-              {cart.length > 0 && <div className="header-alert">{cart.length}</div>}
-              {jwt ? (
-                <MyAccount/>
-              )
-                : <Link to='/login'>Ingresa aca</Link>
-              }
-            </>
-          )
-        } 
-      </HeaderCheckout>
-    </HeaderContainer>
+    // <HeaderContainer>
+    //   <h1 className="header-title">
+    //     <Link to="/">BTS Merch</Link>
+    //   </h1>
+    //   <HeaderCheckout>
+    //     {
+    //       location.pathname !== '/login' &&(
+    //         <>
+    //           <Link to="/cart">
+    //             <ShoppingCart width="32" height="32"/>
+    //           </Link>
+    //           {cart.length > 0 && <div className="header-alert">{cart.length}</div>}
+    //           {jwt ? (
+    //             <MyAccount/>
+    //           )
+    //             : <Link to='/login'>Ingresa aca</Link>
+    //           }
+    //         </>
+    //       )
+    //     } 
+    //   </HeaderCheckout>
+    // </HeaderContainer>
+    <NavbarApp/>
   );
 }
 

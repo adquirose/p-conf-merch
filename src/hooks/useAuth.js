@@ -17,10 +17,6 @@ function useProviderAuth() {
         password: formData.get('password'),
       })
       .then((response) => {
-        // Handle success.
-        // console.log('Well done!');
-        // console.log('User profile', response.data.user);
-        // console.log('User token', response.data.jwt);
         setLoading(false);
         setUser(response.data.user);
         setJwt(response.data.jwt);
@@ -42,6 +38,7 @@ function useProviderAuth() {
     setJwt(null);
   };
   const signUp = (formData) => {
+    setLoading(true);
     axios
       .get(
         `${BACKEND_URL}/api/users?filters[$and][0][email][$eq]=${formData.get(
@@ -56,44 +53,55 @@ function useProviderAuth() {
               password: formData.get('password'),
               email: formData.get('email'),
             })
-            .then((res) => {
+            .then(() => {
               setMessage('revisa tu correo electronico de confirmacion');
-              setError(!res.data.ok);
+              setError(null);
+              setLoading(false);
             })
             .catch((err) => {
-              setMessage('');
+              setMessage(null);
               setError(err.response);
+              setLoading(false);
             });
         } else {
           setMessage('el usuario ya existe');
           setError(null);
+          setLoading(false);
         }
       })
       .catch((err) => {
         setError(err);
         setMessage('ha ocurrido un error');
+        setLoading(false);
       });
   };
   const forgotPassword = (formData) => {
     setLoading(true);
     axios
-      .get(`${BACKEND_URL}/api/users?filters[$and][0][email][$eq]=${formData.get('email')}`)
+      .get(
+        `${BACKEND_URL}/api/users?filters[$and][0][email][$eq]=${formData.get(
+          'email'
+        )}`
+      )
       .then((response) => {
-        if(response.data.length) {
+        if (response.data.length) {
           axios
             .post(`${BACKEND_URL}/api/auth/forgot-password`, {
               email: formData.get('email'),
             })
             .then((res) => {
-              setLoading(false)
+              setLoading(false);
               setMessage(
                 'revisa tu correo electronico para recuperar tu constraseña'
               );
+              setTimeout(() => {
+                setMessage('');
+              }, 3000);
               setError(!res.data.ok);
             })
             .catch((err) => {
               setMessage('');
-              setLoading(false)
+              setLoading(false);
               setError(err.response);
             });
         } else {
@@ -104,6 +112,28 @@ function useProviderAuth() {
       .catch((err) => {
         setError(err);
         setMessage('ha ocurrido un error');
+      });
+  };
+  const resetPassword = (params, formData) => {
+    setLoading(true);
+    axios
+      .post(`${BACKEND_URL}/api/auth/reset-password`, {
+        code: params.get('code'),
+        password: formData.get('password'),
+        passwordConfirmation: formData.get('password'),
+      })
+      .then((response) => {
+        setMessage('contraseña cambiada correctamente');
+        console.log(response);
+      })
+      .catch((err) => {
+        setError(err.response);
+      })
+      .finally(() => {
+        setLoading(false);
+        setTimeout(() => {
+          setMessage('');
+        }, 3000);
       });
   };
   return {
@@ -119,6 +149,7 @@ function useProviderAuth() {
     signOut,
     signUp,
     forgotPassword,
+    resetPassword,
   };
 }
 export default useProviderAuth;

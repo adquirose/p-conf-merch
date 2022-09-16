@@ -1,21 +1,28 @@
-import React, { useRef, useContext } from 'react'
+import React, { useState, useRef, useContext, useEffect } from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import AuthContext from '../../context/AuthContext'
 
 function ForgotPassword() {
     const form = useRef(null)
+    const [state, setState] = useState(false)
     const { forgotPassword, message, error, loading } = useContext(AuthContext)
-  
+   
     const handleOnClick = () => {
       const formData = new FormData(form.current)
       forgotPassword(formData)
+      setState(!state)
     }
+    useEffect(() => {
+      if(state){
+        document.getElementById('form').reset()
+      }
+    },[state])
     return (
       <Container>
         <Row style={{height:'100vh'}} className="d-flex justify-content-center align-items-center">
           <Col md="8">
             <h2>Olvidaste tu contraseña</h2>
-            <Form ref={form}>
+            <Form id="form" ref={form}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control name="email" type="email" placeholder="Ingresa tu email" />

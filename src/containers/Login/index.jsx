@@ -37,9 +37,8 @@ function Login() {
   };
 
   return (
-
     <Container>
-      <Row  style={{height:'100vh'}} className="d-flex justify-content-center align-items-center">
+      <Row style={{height:'100vh'}} className="d-flex justify-content-center align-items-center">
         <Col md="8">
           <h2>Inicio de sesión</h2>
           <Form ref={form}>

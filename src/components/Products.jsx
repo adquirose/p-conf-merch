@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Container, Row } from 'react-bootstrap';
 import Product from './Product';
 import AppContext from '../context/AppContext';
 import '../styles/components/products.css';
@@ -10,8 +11,8 @@ function Products() {
     addToCart(product);
   };
   return (
-    <div className="products">
-      <div className="products-items">
+    <Container>
+      <Row>
         {products.map((product) => (
           <Product
             key={product.id}
@@ -19,8 +20,8 @@ function Products() {
             handleAddToCart={handleAddToCart}
           />
         ))}
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 }
 
