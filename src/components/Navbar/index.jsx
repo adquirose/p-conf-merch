@@ -1,35 +1,49 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import AppContext from '../../context/AppContext';
+import Search from '../../icons/Search';
+import Profile from '../../icons/Profile';
+import Cart from '../../icons/Cart';
+import AccountList from '../AccountList';
+import { NavbarContainer, NavContainer, SearchContainer, ProfileContainer, CartContainer, Alert } from './styles';
 
 function NavbarApp(){
+  const [stateProfile, setStateProfile] = useState(false)
+  const [stateSearch, setStateSearch] = useState(false)
+  const { state } = useContext(AppContext);
+  const { cart } = state;
+
+  const handleSearchOnClick = () => {
+    setStateProfile(false)
+    setStateSearch(!stateSearch)
+  }
+  const handleProfileOnClick = () => {
+    setStateSearch(false)
+    setStateProfile(!stateProfile)
+  } 
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
-        <Navbar.Brand as={Link} to="/">React</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    
+      <NavbarContainer>
+        <Link to="/">
+          <img src="/#" alt="logo"/>
+        </Link>
+        <NavContainer>
+          <CartContainer>
+            {cart.length > 0 && <Alert>{cart.length}</Alert>} 
+            <Link to="/cart">
+              <Cart/>
+            </Link> 
+          </CartContainer>
+          <SearchContainer onClick={handleSearchOnClick}>
+            <Search/>
+          </SearchContainer>
+          <ProfileContainer onClick={handleProfileOnClick}>
+            <Profile/>
+          </ProfileContainer>
+        </NavContainer>
+        { stateProfile && <AccountList handleProfileOnClick={handleProfileOnClick} />}
+        { stateSearch && <p>Search</p>}
+      </NavbarContainer>
   )
 }
 export default NavbarApp

@@ -1,42 +1,35 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import AuthContext from '../../context/AuthContext'
+import AuthContext from '../../context/AuthContext';
+import { Item, List, Button, AccountListContainer } from './styles'
 
-function ButtonMyAccount({ handleOnClick }) {
-    return(
-        <button type="button" onClick={handleOnClick}> 
-            Mi Cuenta
-        </button>
-    )
-}
-    
-function MyAccount() {
-    const { signOut } = useContext(AuthContext)
-    const [visibleButton, setVisibleButton] = useState(true)
+function AccountList({ handleProfileOnClick }) {
+    const { jwt, signOut } = useContext(AuthContext)
     const navigate = useNavigate()
     const handleLogout = () => {
         signOut();
         navigate('/');
+        handleProfileOnClick()
     };
-
-    const renderAccount = () => {
-        if(visibleButton){
-            return(<ButtonMyAccount handleOnClick={() => setVisibleButton(!visibleButton)}/>)
-        }
-            return(
-            <ul>
-                <Link to='/perfil'>
+    return ( 
+        <AccountListContainer>
+            {jwt ?
+            <List>
+                <Item as={Link} to="/perfil">
                     Perfil
-                </Link>
-                <li>
-                    <button type="button" onClick={handleLogout}>Salir</button>
-                </li>
-            </ul>)
+                </Item>
+                <Item as={Button} type="button" onClick={ handleLogout }> 
+                    Salir
+                </Item>
+            </List>
+            :
+            <Link to="/login">
+                Iniciar Sesion
+            </Link>
+            }
+        </AccountListContainer>
         
-    }
-    return (
-        <>{renderAccount()}</>
     )
 }
 
-export default MyAccount
+export default AccountList

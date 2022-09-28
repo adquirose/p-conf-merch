@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import AppContext from '../../context/AppContext';
-import AuthContext from '../../context/AuthContext';
-import { HeaderContainer, HeaderCheckout } from './styles';
-import ShoppingCart from '../../icons/ShoppingCart';
-import MyAccount from '../AccountList';
+import React from 'react';
+// import { useLocation } from 'react-router-dom';
+// import AppContext from '../../context/AppContext';
+// import AuthContext from '../../context/AuthContext';
+
+
+
 import NavbarApp from '../Navbar';
 
 function Header() {
-  const { state } = useContext(AppContext);
-  const { jwt } = useContext(AuthContext);
-  const { cart } = state;
-  const location = useLocation()
+  // const { state } = useContext(AppContext);
+  // const { jwt } = useContext(AuthContext);
+  // const { cart } = state;
+  // const location = useLocation()
    
   return (
     // <HeaderContainer>

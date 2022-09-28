@@ -9,7 +9,11 @@ function Perfil() {
     },[user])
   return (
     <Layout>
-      <div>Hola {user.username}</div>
+      <h2>Datos de la Cuenta</h2>
+      <p>Nombre : {user.username}</p>
+      <p>Email : {user.email}</p>
+      <span>Cambio de Contraseña</span>
+
     </Layout>
   )
 }

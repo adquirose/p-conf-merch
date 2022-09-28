@@ -1,18 +1,17 @@
 import React, { useContext } from 'react';
-import { Container, Row } from 'react-bootstrap';
-import Product from './Product';
-import AppContext from '../context/AppContext';
-import '../styles/components/products.css';
+import { ProductsContainer, ProductsRow } from './styles';
+import Product from '../Product';
+import AppContext from '../../context/AppContext';
 
 function Products() {
   const { products, addToCart } = useContext(AppContext);
 
-  const handleAddToCart = (product) => () => {
-    addToCart(product);
+  const handleAddToCart = (product, qty) => () => {
+    addToCart(product,qty);
   };
   return (
-    <Container>
-      <Row>
+    <ProductsContainer>
+      <ProductsRow>
         {products.map((product) => (
           <Product
             key={product.id}
@@ -20,8 +19,8 @@ function Products() {
             handleAddToCart={handleAddToCart}
           />
         ))}
-      </Row>
-    </Container>
+      </ProductsRow>
+    </ProductsContainer>
   );
 }
 

@@ -3,12 +3,12 @@ import axios from 'axios';
 import { BACKEND_URL } from '../constants';
 
 function useProviderAuth() {
-  const [jwt, setJwt] = useState(!!localStorage.getItem('jwt'));
-  const [user, setUser] = useState(!!localStorage.getItem('user'));
+  const [jwt, setJwt] = useState(JSON.parse(localStorage.getItem('jwt')));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
   const [error, setError] = useState(null);
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
-
+  
   const signIn = (formData, callback) => {
     setLoading(true);
     axios
@@ -20,9 +20,8 @@ function useProviderAuth() {
         setLoading(false);
         setUser(response.data.user);
         setJwt(response.data.jwt);
-        localStorage.setItem('jwt', response.data.jwt);
-        localStorage.setItem('user', response.data.user);
-
+        localStorage.setItem('jwt', JSON.stringify(response.data.jwt));
+        localStorage.setItem('user', JSON.stringify(response.data.user));
         callback('/');
         setError(false);
       })

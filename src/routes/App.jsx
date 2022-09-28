@@ -20,6 +20,7 @@ import useAuth from '../hooks/useAuth';
 import GlobalStyle from './styles';
 import ForgotPassword from '../containers/ForgotPassword';
 import ResetPassword from '../containers/ResetPassword';
+import ProductDetail from '../containers/ProductDetail';
 
 const initialOptions = {
   'client-id': process.env.REACT_APP_PAYPAL_CLIENT_ID,
@@ -67,6 +68,7 @@ function App() {
                       </PrivateRoute>
                     }
                   />
+                  <Route path="/products/:id" element={<ProductDetail/>}/>
                   <Route
                     path="/checkout/information"
                     element={<Information />}
