@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ProductsContainer, ProductsRow } from './styles';
 import Product from '../Product';
 import AppContext from '../../context/AppContext';
@@ -9,6 +9,9 @@ function Products() {
   const handleAddToCart = (product, qty) => () => {
     addToCart(product,qty);
   };
+  useEffect(() => {
+    console.log(products)
+  },[products])
   return (
     <ProductsContainer>
       <ProductsRow>

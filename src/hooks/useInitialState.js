@@ -17,6 +17,7 @@ const useInitialState = () => {
     };
     fetchData();
   }, []);
+  
 
   const isInCart = (title) => {
 		const enCart = state.cart.find((producto) => producto.title === title);
