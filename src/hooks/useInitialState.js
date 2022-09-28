@@ -7,7 +7,7 @@ const API = `${BACKEND_URL}/api/products?populate=%2A`;
 
 const useInitialState = () => {
   const [state, setState] = useState(initialState);
-  const [products, setProducts] = useState(JSON.parse(localStorage.getItem('products')));
+  const [products, setProducts] = useState([] || JSON.parse(localStorage.getItem('products')));
 
   useEffect(() => {
     const fetchData = async () => {
