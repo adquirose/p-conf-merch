@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
-import { CardContainer, Card, CardImage, CardBody, CardTitle, CardText, Button, ButtonGroup } from './styles';
+import { CardContainer, Card, CardImage, CardBody, CardTitle, CardText, Button, ButtonGroup, CountContainer, CountButton, CountSpan } from './styles';
 import { BACKEND_URL } from '../../constants';
 
 function Product({ product, handleAddToCart }) {
@@ -25,16 +25,18 @@ function Product({ product, handleAddToCart }) {
         <CardBody>
           <CardTitle>{product.title}</CardTitle>
           <CardText>{product.description}</CardText>
-          <CardText>${product.price}</CardText>
+          <CardText>Valor: ${product.price}</CardText>
+          <CountContainer>
+            <CountButton onClick={ () => handleOnClick(-1) } type="button">-</CountButton>
+            <CountSpan>{ qty }</CountSpan>
+            <CountButton onClick={ () => handleOnClick(+1) } type="button">+</CountButton>
+          </CountContainer>
           <ButtonGroup>
-            <Button onClick={ () => handleOnClick(-1) } type="button">-</Button>
-            <span>{ qty }</span>
-            <Button onClick={ () => handleOnClick(+1) } type="button">+</Button>
             <Button disabled={qty < 1 && true} type="button" onClick={handleAddToCart(product,qty)}>
                 Agregar
             </Button>
-            <Button>
-                <Link to={`/products/${product.uid}`}>Ver más</Link>
+            <Button as={Link} to={`/products/${product.uid}`}>
+                Ver más
             </Button>
           </ButtonGroup>
         </CardBody>

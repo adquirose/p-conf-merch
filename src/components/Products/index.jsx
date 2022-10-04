@@ -15,13 +15,18 @@ function Products() {
   return (
     <ProductsContainer>
       <ProductsRow>
-        {products.map((product) => (
-          <Product
-            key={product.id}
-            product={product.attributes}
-            handleAddToCart={handleAddToCart}
-          />
-        ))}
+        {products.length > 0 ? 
+          products.map((product) => (
+            <Product
+              key={product.id}
+              product={product.attributes}
+              handleAddToCart={handleAddToCart}
+            />
+          ))
+          :
+          <p>Cargando</p>
+        }
+        
       </ProductsRow>
     </ProductsContainer>
   );

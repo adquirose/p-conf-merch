@@ -1,13 +1,12 @@
 import styled from 'styled-components'
 
 export const AccountListContainer = styled.div`
-    grid-template-rows: row2/ row3;
-
+    grid-row: row2/ row3;
+    grid-column:col1/der;
 `
 export const List = styled.ul`
     list-style: none;
-    margin: 0;
-    padding: 8px; 
+    padding-right: 18px; 
     width:100%;
 `
 export const Item = styled.li`

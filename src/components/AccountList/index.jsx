@@ -23,9 +23,11 @@ function AccountList({ handleProfileOnClick }) {
                 </Item>
             </List>
             :
-            <Link to="/login">
-                Iniciar Sesion
-            </Link>
+            <List>
+                <Item as={Link} to="/login">
+                    Iniciar Sesion
+                </Item>
+            </List>
             }
         </AccountListContainer>
         

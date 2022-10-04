@@ -1,13 +1,16 @@
 import styled from 'styled-components'
 
 export const CardContainer = styled.div`
-    width:320px;
-    margin-bottom:5px;
+    min-width:280px;
+    max-width:320px;
+    margin:7px;
+    display:flex;
+    justify-content:center;
 `
 export const Card = styled.div`
     display:grid;
-    grid-template: [top] 200px [row1] 100px [row2] 50px [bottom] / [izq] 1fr [der];
-    width:320px;
+    grid-template: [top] 200px [row1] 100px [row2] 95px [bottom] / [izq] 1fr [der];
+    width:100%;
     border: 1px solid gray;
     border-radius:10px;
 `
@@ -23,28 +26,55 @@ export const CardBody = styled.div`
     grid-row: row1/bottom;
 `
 export const CardTitle = styled.p`
-    font-size:16px;
+    font-size:18px;
+    padding-left:20px;
 `
 export const CardText = styled.p`
-    font-size:12px;
+    font-size:14px;
+    padding-left:20px;
 `
 export const Button = styled.button`
-    background: linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
-    width: 100%;
+    width: 100px;
     padding: 10px;
+    background:transparent;
     border-radius: 0px 0px 5px 5px;
     border: 0px;
     outline: 0;
+    color:black;
     cursor: pointer;
     font-size: 14px;
     font-weight: 300;
+    &:disabled{
+        color:gray;
+    }
 `
 export const ButtonGroup = styled.div`
-    display:grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap:5px;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
 `
 export const CountContainer = styled.div`
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    width:100px;
+    height:32px;
     border: 1px solid gray;
-    grid-row: row2/bottom;
+    border-radius:10px;
+    margin: 0 auto;  
+`
+export const CountButton = styled.button`
+    padding: 3px;
+    border-radius: 0px 0px 5px 5px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    font-size: 16px;
+    width: 40px;
+    background:transparent;
+`
+export const CountSpan = styled.span`
+    width:20px;
+    padding-top:2px;
+    text-align:center;
 `

@@ -4,7 +4,7 @@ import { BACKEND_URL } from '../constants';
 
 function useProviderAuth() {
   const [jwt, setJwt] = useState(!!JSON.parse(localStorage.getItem('jwt')));
-  const [user, setUser] = useState(!!JSON.parse(localStorage.getItem('user')));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
   const [error, setError] = useState(null);
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);

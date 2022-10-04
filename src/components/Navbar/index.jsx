@@ -22,14 +22,14 @@ function NavbarApp(){
     setStateProfile(!stateProfile)
   } 
   return (
-    
       <NavbarContainer>
         <Link to="/">
           <img src="/#" alt="logo"/>
         </Link>
         <NavContainer>
+        {cart.length > 0 && <Alert>{cart.length}</Alert>} 
           <CartContainer>
-            {cart.length > 0 && <Alert>{cart.length}</Alert>} 
+            
             <Link to="/cart">
               <Cart/>
             </Link> 
